@@ -1,0 +1,11 @@
+This folder includes all the scripts that were used for phylogenomics analyses of Fijian ants project.
+
+1. Ipyrad Radseq de novo assembly for Fijian ant phylogeny. 
+1.1 "1_ipyrad_assembly.slurm": slurm script for running Ipyrad.
+1.2 "1_params-phylogeny_outgroup.txt": Ipyrad parameter file.
+
+2. Maximum Likelihood (ML) phylogenetic reconstruction
+2.1 "2_full_examl_fijian_ants.slurm": slurm script for running ExaML.
+
+3. Bayesian dating analysis
+3.1 "3_beast.slurm": slurm script for running BEAST.
