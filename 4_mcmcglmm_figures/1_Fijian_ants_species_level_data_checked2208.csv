@@ -1,0 +1,127 @@
+sp,sp_beast,mean disturbance,mean elev,# islands,# unique localities,endemic,radiation,genus-radiation,category
+Colobopsis.bryani,Colobopsis.bryani_clade_EGP0136A07_Fiji,4.257142857,340.8857143,5,4,1,1,1,endemic
+Colobopsis.cristata,Colobopsis.cristata_clade_EGP0080B07_Fiji,3.9,395.1,5,45,1,1,1,endemic
+Colobopsis.dentata_c1,Colobopsis.dentata_c1_EGP0070H11_Fiji,3.25,285.8,4,5,1,1,1,endemic
+Colobopsis.dentata_c2,Colobopsis.dentata_c2_EGP0138G07_Fiji,3.9,259.8,3,6,1,1,1,endemic
+Colobopsis.dentata_c3,Colobopsis.dentata_c3_EGP0071A10_Fiji,4.1,149,2,5,1,1,1,endemic
+Colobopsis.dentata_c4,Colobopsis.dentata_c4_EGP0071C08_Fiji,4,76,1,3,1,1,1,endemic
+Colobopsis.laminata_c1,Colobopsis.laminata_c1_EGP0074D06_Fiji,4.388888889,360.3333333,4,8,1,1,1,endemic
+Colobopsis.laminata_c2,Colobopsis.laminata_c2_EGP0074C07_Fiji,4.3125,312.5,1,3,1,1,1,endemic
+Colobopsis.laminata_c3,Colobopsis.laminata_c3_EGP0073G08_Fiji,3.9,469.9767442,4,16,1,1,1,endemic
+Colobopsis.polynesica_c1,Colobopsis.polynesica_c1_EGP0071G01_Fiji,4.352941176,334.2941176,4,9,1,1,1,endemic
+Colobopsis.polynesica_c2,Colobopsis.polynesica_c2_EGP0072C08_Fiji,4.111111111,141,4,10,1,1,1,endemic
+Colobopsis.polynesica_c3,Colobopsis.polynesica_c3_EGP0060D10_Fiji,4.275862069,167.6896552,7,15,1,1,1,endemic
+Colobopsis.polynesica_c4,Colobopsis.polynesica_c4_EGP0060F07_Fiji,4.333333333,435.9298246,6,20,1,1,1,endemic
+Colobopsis.polynesica_c5,Colobopsis.polynesica_c5_EGP0071F07_Fiji,4.111111111,459.8333333,2,3,1,1,1,endemic
+Colobopsis.schmeltzi,Colobopsis.schmeltzi_clade_EGP0137A05_Fiji,4.4375,523.34375,6,61,1,1,1,endemic
+Colobopsis.vitiensis,Colobopsis.vitiensis_EGP0060A03_Fiji,4.160588235,540.0294118,6,33,1,1,1,endemic
+Eurhopalothrix.sp,Eurhopalothrix.fj_sp_EGP0032B04_Fiji,4.333333333,461.1666667,6,14,1,2,2,endemic
+Gnamptogenys.aterrima,Gnamptogenys.aterrima_EGP0070D10_Fiji,4.428571429,412.2380952,9,62,1,2,2,endemic
+Hypoponera.eutrepta,Hypoponera.eutrepta_EGP0093B09_Fiji,4.617977528,526.988764,9,87,1,2,1,endemic
+Hypoponera.fj16,Hypoponera.fj16_EGP0095B04_Fiji,4.384615385,483.7692308,7,13,1,1,1,endemic
+Hypoponera.monticola,Hypoponera.monticola_EGP0094C04_Fiji,4.583333333,480.7833333,8,59,1,1,1,endemic
+Hypoponera.turaga,Hypoponera.turaga_EGP0094H10_Fiji,4.666666667,690.8333333,3,6,1,1,1,endemic
+Leptogenys.fje02,Leptogenys.FJE02_EGP0095E10_Fiji,4.105263158,249.4210526,6,14,1,1,1,endemic
+Leptogenys.fje05,Leptogenys.FJE05_EGP0096A07_Fiji,4.2,587,1,4,1,1,1,endemic
+Leptogenys.fjm01,Leptogenys.fjm01_EGP0103F01_Fiji,4.666666667,665.4444444,3,8,1,1,1,endemic
+Leptogenys.fjm03,Leptogenys.fjm03_EGP0103G01_Fiji,5,441.5,1,2,1,1,1,endemic
+Leptogenys.fjn01,Leptogenys.fjn01_EGP0095F08_Fiji,4.545454545,578.8181818,2,5,1,1,1,endemic
+Leptogenys.fjn02,Leptogenys.fjn02_EGP0095E11_Fiji,4.22,323.625,2,4,1,1,1,endemic
+Leptogenys.fugax,Leptogenys.fugax_EGP0095E02_Fiji,4.714285714,583.4285714,3,7,1,1,1,endemic
+Leptogenys.letilae,Leptogenys.letilae_EGP0095D08_Fiji,4.625,781,2,8,1,1,1,endemic
+Lordomyrma.desupra,Lordomyrma.desupra_EGP0033B12_Fiji,4.428571429,620.7142857,1,7,1,1,1,endemic
+Lordomyrma.polita,Lordomyrma.polita_EGP0033D09_Fiji,4.666666667,626,3,6,1,1,1,endemic
+Lordomyrma.rugosa,Lordomyrma.rugosa_EGP0035B05_Fiji,4,910,1,3,1,1,1,endemic
+Lordomyrma.striatella,Lordomyrma.striatella_EGP0032F01_Fiji,4.625,448.25,5,8,1,1,1,endemic
+Lordomyrma.tortuosa,Lordomyrma.tortuosa_EGP0032G03_Fiji,4.545454545,453.6666667,8,33,1,1,1,endemic
+Metapone.manni,Metapone.manni_EGP0035A07_Fiji,4.555555556,595.3333333,5,8,1,2,2,endemic
+Nylanderia.vitiensis,Nylanderia.vitiensis_EGP0137D11_Fiji,4.157142857,385.8428571,6,67,1,2,2,endemic
+Ochetellus.sororis,Ochetellus.sororis_EGP0068C03_Fiji,4.333333333,616.3333333,3,9,1,2,2,endemic
+Odontomachus.angulatus,Odontomachus.angulatus_EGP0096C03_Fiji,3.431428571,532.3214286,4,28,1,2,2,endemic
+Ooceraea.crypta,Ooceraea.crypta_EGP0099F12_Fiji,4.071428571,439.5714286,1,7,1,1,1,endemic
+Ooceraea.fj06,Ooceraea.fj06_EGP0100B10_Fiji,4.015789474,339.4736842,9,37,1,1,1,endemic
+Ooceraea.fuscior,Ooceraea.fuscior_EGP0099G11_Fiji,4.046923077,350,3,13,1,1,1,endemic
+Paraparatrechina.oceanica,Paraparatrechina.oceanica_EGP0138A07_Fiji,4.279411765,362.8088235,10,67,1,2,2,endemic
+Parasyscia.lindrothi,Parasyscia.lindrothi_EGP0100F08_Fiji,4.666666667,386.6666667,2,3,1,1,1,endemic
+Pheidole.bula,Pheidole.bula_EGP0016A02_Fiji,5,333.5,1,5,1,1,1,endemic
+Pheidole.caldwelli,Pheidole.caldwelli_EGP0016A04_Fiji,5,333.5,2,5,1,1,1,endemic
+Pheidole.colaensis,Pheidole.colaensis_EGP0016A08_Fiji,4.285714286,885.2857143,1,16,1,1,1,endemic
+Pheidole.FJ05,Pheidole.fj05_EGP0025G05_Fiji,5,734,1,1,1,1,1,endemic
+Pheidole.furcata,Pheidole.furcata_EGP0016B04_Fiji,5,670,1,2,1,1,1,endemic
+Pheidole.kava,Pheidole.kava_EGP0027D12_Fiji,4.615384615,527.1538462,3,13,1,1,1,endemic
+Pheidole.knowlesi,Pheidole.knowA_EGP0029H06_Fiji,4.614285714,582.6,7,70,1,1,1,endemic
+Pheidole.onifera,Pheidole.onifera_EGP0016H09_Fiji,4.333333333,356.3333333,6,17,1,2,2,endemic
+Pheidole.roosevelti,Pheidole.roosevelti_EGP0016D06_Fiji,4.785714286,529.9285714,3,26,1,1,1,endemic
+Pheidole.simplispinosa,Pheidole.simplinosa_EGP0016E11_Fiji,4.473684211,537.7894737,3,17,1,1,1,endemic
+Pheidole.ululevu,Pheidole.ululevu_EGP0025D07_Fiji,4.493670886,366.1772152,10,78,1,1,1,endemic
+Pheidole.uncagena,Pheidole.uncagena_EGP0022C09_Fiji,4.6,690.2,3,10,1,1,1,endemic
+Pheidole.vatu,Pheidole.vatu_EGP0022E11_Fiji,4.4,430.8,8,34,1,1,1,endemic
+Pheidole.wilsoni,Pheidole.wilsoni_EGP0023A03_Fiji,4.47761194,449.0447761,8,65,1,1,1,endemic
+Philidris.nagasau,Philidris.nagasau_EGP0068D11_Fiji,4.285714286,498.5714286,3,21,1,2,2,endemic
+Poecilomyrma.fj03,Poecolomyrma.fj03_EGP0025A02_Fiji,4.714285714,589.9285714,6,14,1,1,1,endemic
+Poecilomyrma.fj05,Poecolomyrma.fj05_EGP0031D05_Fiji,4.5,559.8,3,10,1,1,1,endemic
+Poecilomyrma.senirewae,Poecolomyrma.senirewae_EGP0025G01_Fiji,4.266666667,768.6,1,15,1,1,1,endemic
+Ponera.colaensis,Ponera.colaensis_EGP0099E11_Fiji,4.5,855.3333333,3,12,1,2,1,endemic
+Ponera.fj02,Ponera.fj02_EGP0099F05_Fiji,4.75,364.25,5,8,1,2,1,endemic
+Ponera.manni,Ponera.manni_EGP0102H11_Fiji,3.9,369.2,6,10,1,2,1,endemic
+Pristomyrmex.mandibularis,Pristomyrmex.mandibularis_EGP0025G10_Fiji,4.49122807,462.7719298,8,57,1,1,1,endemic
+Pristomyrmex.tsujii,Pristomyrmex.tsujii_EGP0029E11_Fiji,4.545454545,499.3863636,8,44,1,1,1,endemic
+Proceratium.oceanicum,Proceratium.oceanicum_EGP0091B12_Fiji,4.4,655.7,3,10,1,1,1,endemic
+Proceratium.relictum,Proceratium.relictum_EGP0091C09_Fiji,4.307692308,567.2307692,2,13,1,1,1,endemic
+Proceratium.vinaka,Proceratium.vinaka_EGP0103A03_Fiji,4.714285714,647.5714286,3,7,1,1,1,endemic
+Strumigenys.anorak,Strumigenys.necronom_EGP0067F05_Fiji,4.7,361.2,2,3,1,1,1,endemic
+Strumigenys.avatar,Strumigenys.terminator_EGP0061H05_Fiji,5,468.5,1,1,1,1,1,endemic
+Strumigenys.basiliska,Strumigenys.basiliska_EGP0036G12_Fiji,4.516129032,417.7419355,7,31,1,1,1,endemic
+Strumigenys.chernovi,Strumigenys.chernovi_EGP0037D06_Fiji,4.416666667,354.9583333,5,23,1,1,1,endemic
+Strumigenys.ekasura,Strumigenys.ekasura_EGP0061B04_Fiji,4.36,354.88,6,24,1,1,1,endemic
+Strumigenys.frivola,Strumigenys.frivola_EGP0061C07_Fiji,5,975,1,2,1,1,1,endemic
+Strumigenys.gunter,Strumigenys.xenomorph_EGP0117D07_Fiji,5,300,1,2,1,1,1,endemic
+Strumigenys.mailei,Strumigenys.mailei_EGP0067F07_Fiji,4.875,713.5,3,8,1,1,1,endemic
+Strumigenys.nidifex,Strumigenys.nidifex_EGP0062A08_Fiji,4.666666667,592.2380952,6,20,1,1,1,endemic
+Strumigenys.praefecta,Strumigenys.praefecta_EGP0062C07_Fiji,4.545454545,622.0909091,3,11,1,1,1,endemic
+Strumigenys.sulcata,Strumigenys.sulcata_EGP0062G05_Fiji,4.555555556,639.0555556,4,18,1,1,1,endemic
+Strumigenys.trauma,Strumigenys.trauma_EGP0035F11_Fiji,4.384615385,385.1153846,7,26,1,2,2,endemic
+Strumigenys.vakata,Strumigenys.vakata_EGP0062B03_Fiji,4,180,1,1,1,1,1,endemic
+Tapinoma.fj01,Tapinoma.fj01_EGP0103B08_Fiji,4.25,480,3,4,1,1,1,endemic
+Tapinoma.fj02,Tapinoma.fj02_EGP0069G12_Fiji,4.5,314.5,1,2,1,1,1,endemic
+Tetramorium.manni,Tetramorium.manni_EGP0064E11_Fiji,4.379310345,500.4827586,6,29,1,2,2,endemic
+Vollenhovia.fj01,Vollenhovia.fj01_EGP0067E03_Fiji,4.833333333,518.5833333,3,12,1,1,1,endemic
+Acropyga.lauta,Acropyga.lauta_EGP0102D05_Fiji,5,485,1,2,2,3,3,widespread pacific native
+Adelomyrmex.hirsutus,Adelomyrmex.hirsutus_EGP0031F01_Fiji,4.25,415,4,8,2,3,3,widespread pacific native
+Anochetus.graeffei,Anochetus.graeffei_EGP0091H05_Fiji,4.297297297,282.5675676,6,36,2,3,3,widespread pacific native
+Camponotus.chloroticus,Camponotus.chloroticus_EGP0071D10_Fiji,3.772727273,142.1818182,8,19,2,3,3,widespread pacific native
+Cardiocondyla.nuda,Cardiocondyla.nuda_EGP0031G03_Fiji,3.333333333,161,1,3,2,3,3,widespread pacific native
+Carebara.atoma,Carebara.atoma_EGP0031H09_Fiji,4.533333333,302.4666667,7,15,2,3,3,widespread pacific native
+Hypoponera.confinis,Hypoponera.confinis_EGP0137C06_Fiji,4.666666667,284,2,3,2,3,3,widespread pacific native
+Iridomyrmex.anceps,Iridomyrmex.anceps_EGP0068B09_Fiji,2.089285714,176.25,3,10,2,3,3,widespread pacific native
+Monomorium.floricola,Monomorium.floricola_EGP0033F05_Fiji,2.794117647,118.7352941,8,14,2,3,3,widespread pacific native
+Nylanderia.obscura,Nylanderia.obscura_EGP0137C11_Fiji,4.666666667,595.8333333,3,6,2,3,3,widespread pacific native
+Odontomachus.simillimus,Odontomachus.simillimus_EGP0098D03_Fiji,3.84375,270.70625,12,123,2,3,3,widespread pacific native
+Pheidole.fervens,Pheidole.fervens_EGP0019A05_Fiji,2.731707317,304.3658537,3,15,2,3,3,widespread pacific native
+Pheidole.oceanica,Pheidole.oceanica_EGP0016G11_Fiji,4.21686747,301.2771084,12,79,2,3,3,widespread pacific native
+Pheidole.umbonata,Pheidole.umbonata_EGP0016E05_Fiji,3.682926829,169.5609756,10,31,2,3,3,widespread pacific native
+Ponera.swezeyi,Ponera.swezeyi_EGP0099F09_Fiji,4,255,3,5,2,3,3,widespread pacific native
+Rogeria.stigmatica,Rogeria.stigmatica_EGP0035C04_Fiji,4.395348837,324.5581395,8,41,2,3,3,widespread pacific native
+Solenopsis.papuana,Solenopsis.papuana_EGP0036G03_Fiji,4.454545455,372.1090909,9,54,2,3,3,widespread pacific native
+Strumigenys.godeffroyi,Strumigenys.godeffroyi_EGP0061D04_Fiji,4.15,283.875,8,41,2,3,3,widespread pacific native
+Tapinoma.minutum,Tapinoma.minutum_EGP0069G08_Fiji,3.916666667,593.5,4,13,2,3,3,widespread pacific native
+Technomyrmex.vitiensis,Technomyrmex.vitiensis_EGP0101G03_Fiji,4.107843137,323.8235294,11,95,2,3,3,widespread pacific native
+Tetramorium.insolens,Tetramorium.bicarinatum_EGP0063H10_Fiji,4.25,245.0714286,10,28,2,3,3,widespread pacific native
+Tetramorium.pacificum,Tetramorium.pacificum_EGP0065G07_Fiji,3.86013986,370.8881119,12,108,2,3,3,widespread pacific native
+Tetramorium.tonganum,Tetramorium.tonganum_EGP0067D04_Fiji,4.068181818,304.1590909,10,44,2,3,3,widespread pacific native
+Anoplolepis.gracilipes,Anoplolepis.gracilipes_EGP0102E11_Fiji,2.943661972,163.1267606,11,34,3,4,4,Exotic
+Cardiocondyla.emeryi,Cardiocondyla.emeryi_EGP0031F06_Fiji,2.08,171.88,4,4,3,4,4,Exotic
+Cardiocondyla.minutior,Cardiocondyla.minutior_EGP0031F09_Fiji,2.923076923,384.7692308,4,13,3,4,4,Exotic
+Cardiocondyla.obscurior,Cardiocondyla.obscurior_EGP0031G08_Fiji,3.866666667,288.2666667,7,13,3,4,4,Exotic
+Hypoponera.opaciceps,Hypoponera.opaciceps_EGP0094G12_Fiji,3.857142857,377.7142857,4,7,3,4,4,Exotic
+Hypoponera.punctatissima,Hypoponera.punctatissima_EGP0094H08_Fiji,4,335.1666667,6,7,3,4,4,Exotic
+Pheidole.megacephala,Pheidole.megacephala_EGP0019C04_Fiji,2.6,150.4444444,8,24,3,4,4,Exotic
+Platythyrea.parallela,Platythyrea.parallela_EGP0099E07_Fiji,2.5,24.16666667,1,3,3,4,4,Exotic
+Pseudoponera.stigma,Pseudoponera.stigma_EGP0099C08_Fiji,4.222222222,217.3333333,3,27,3,4,4,Exotic
+Solenopsis.geminata,Solenopsis.geminata_EGP0035H08_Fiji,2.139534884,258.7906977,1,6,3,4,4,Exotic
+Strumigenys.membranifera,Strumigenys.membranifera_EGP0035E12_Fiji,4,180,1,1,3,4,4,Exotic
+Strumigenys.rogeri,Strumigenys.rogeri_EGP0062E04_Fiji,4.296296296,285.7037037,6,26,3,4,4,Exotic
+Syllophopsis.sechellensis,Syllophopsis.sechellensis_EGP0033H10_Fiji,4.266666667,339.2,5,15,3,4,4,Exotic
+Tapinoma.melanocephalum,Tapinoma.melanocephalum_EGP0069D02_Fiji,2.666666667,249.9349594,10,41,3,4,4,Exotic
+Tetramorium.lanuginosum,Tetramorium.insolens_EGP0064B06_Fiji,2.2,64,2,2,3,4,4,Exotic
+Tetramorium.simillimum,Tetramorium.simillimum_EGP0066G11_Fiji,2.605263158,117.4210526,8,16,3,4,4,Exotic
