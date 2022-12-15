@@ -1,4 +1,4 @@
-This folder includes all the scripts that were used for phylogenomics analyses of Fijian ants project.
+This folder includes all the scripts used for the Fijian ants project's phylogenomics analyses.
 
 1. Ipyrad Radseq de novo assembly for Fijian ant phylogeny. 
 1.1 "1_ipyrad_assembly.slurm": slurm script for running Ipyrad.
