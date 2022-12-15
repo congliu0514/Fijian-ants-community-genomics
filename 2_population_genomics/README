@@ -1,0 +1,15 @@
+This folder includes all the scripts for population genomic analyses for the Fijian ant project.
+
+1. "0_ipyrad_vcf2single_snp.py": Python script that keeps only one SNP per loci in the .vcf file.
+
+2. "0_vcf_to_hdf5.py": Python script that converts .vcffile to this HDF5 format for the downstream PCA and STRUCTURE analyses.
+
+3. "1_all_structure_running.py": Python script for running STRUCTURE analysis in our project.
+
+4. "1_all_structure_choose_K.py": Python script to analyze STRUCTURE results, part 1: for choosing the correct K value.
+
+5. "1_all_structure_Barplots.py": Python script to plot the STRUCTURE Barplots based on different K values.
+
+6. "2_all_pca.py": Python script to run PCA analyses.
+
+7. "3_all_fst.py": Python script to calculate pair-wise FST (Weir and Cockerham).
