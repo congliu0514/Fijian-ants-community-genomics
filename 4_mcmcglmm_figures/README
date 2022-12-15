@@ -1,0 +1,10 @@
+This folder includes the R scripts for generating figure 2 and running mcmcGLMM in the MS.
+
+1. "1_fijian_ants_figure_generating.R": R script for generating figures. The dataset files are as follows:
+1.1 "1_Fijian_ants_species_level_data_checked2208.csv"
+1.2 "1_Fijian_ants_population_fst_data.csv"
+1.3 "1_dadi_summary_sp_level.csv"
+
+2. "2_Fijian_ants_mcmcGLM.R": R script for running mcmcGLMM. The required data file are:
+2.1 "1_dadi_summary_sp_level.csv"
+2.2 "Fijian_ants_beast.tre"
