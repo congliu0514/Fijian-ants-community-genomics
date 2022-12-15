@@ -1,0 +1,8 @@
+This folder includes all the scripts for running demographic modeling. 
+
+1. "all_easysfs.sh": Bash script for running easySFS, which is a tool for the effective selection of population size projection for 
+                     construction of the site frequency spectrum. See https://github.com/isaacovercast/easySFS for detail.
+                     
+2. "dadi_all_fijian_ants.py": Python script for running dadi. 
+
+3. "fsc2_all_fijian_ants.slurm": slurm script for running Fastsimcoal 2.
