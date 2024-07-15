@@ -1,0 +1,47 @@
+---
+title: "Figure 2"
+format: html
+---
+
+
+```{r message=F}
+library(tidyverse)
+library(ggjoy)
+library(ggridges)
+library(patchwork)
+
+mycolors <- c("chartreuse3", "dodgerblue1", "gold")
+timeDat <- read_csv("data/species.csv") %>% dplyr::select(sp, status, t_real, Na, Nc) %>% mutate(growing = ifelse(Nc > Na, TRUE, FALSE))
+timeDat$status <- factor(timeDat$status, levels=c("endemic", "widespread Pacific native", 'exotic')) 
+```
+
+
+Calibrate and plot data. We assume the maximum arrival time for invasive ants is ~1600
+
+```{r}
+arrival <- 300
+earlyExoticFactor <- max(filter(timeDat, status == "exotic") %>% pull(t_real)) / arrival
+timeDat <- timeDat %>% mutate(years = t_real/earlyExoticFactor)
+timeDat$status <- factor(timeDat$status, levels = c("endemic", "widespread Pacific native",  "exotic"))
+
+annotation_data1 <- data.frame(status = "endemic", growing = FALSE, label = "human settlement" )
+annotation_data2 <- data.frame(status = "endemic", growing = FALSE, label = "slash-and-burn agriculture")
+annotation_data3 <- data.frame(status = "endemic", growing = FALSE, label = "European arrival")
+
+```
+```{r}
+timeDat %>% ggplot(aes(x = years, fill = status)) +
+  geom_rect(aes(xmin = 0, xmax = 3000, ymin = -Inf, ymax = Inf), fill = "lightgrey", colour = NA) +
+  geom_rect(aes(xmin = 0, xmax = 1800, ymin = -Inf, ymax = Inf), fill = "grey", colour = NA) +
+  geom_rect(aes(xmin = 0, xmax = 400, ymin = -Inf, ymax = Inf), fill = "darkgrey", colour = NA) + 
+  geom_histogram(data = . %>% filter(growing == TRUE), aes(y = ..count..), position = "identity") +
+  geom_histogram(data = . %>% filter(growing == FALSE), aes(y = -..count..), position = "identity") +
+  geom_hline(yintercept = 0, color = "red", linetype = 2) + 
+  facet_grid(status ~ ., switch = "y") + 
+  scale_x_reverse(name = "Years before present", breaks = c(3000, 1800, 400, 0), limits = c(3000, 0), expand = c(0, 0)) + 
+  scale_y_continuous(labels = abs) + 
+  theme_bw() + 
+  scale_fill_manual(values = mycolors) + theme_minimal() + theme(legend.position = "none")
+#ggsave("population changes.pdf", height=5, width=5)    
+
+```

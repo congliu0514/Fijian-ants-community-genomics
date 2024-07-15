@@ -1,0 +1,133 @@
+---
+title: "Figure 1"
+format: html
+---
+
+# Make heatmaps of ecological data (disturbance score and elevation)
+
+```{r message=F}
+library(tidyverse)
+library(readxl)
+library(ggtree)
+library(ape)
+library(ggnewscale) # adds a new scale to an existing plot
+library(ggjoy)
+library(patchwork)
+library(treeio)
+mycolors <- c("chartreuse3", "dodgerblue1", "gold")
+tree <- read.beast("data/beast.tre")
+tree_dat <- read_csv("data/tree_data.csv")
+tree_dat$species <- sub("_EGP.*$", "", tree_dat$label)
+tree_dat$status <- factor(tree_dat$status, levels=c("endemic", "widespread Pacific native", 'exotic'))  
+ecoDat <- read_excel("data/ecology.xlsx", sheet = 1)
+joyData <- left_join(tree_dat, ecoDat, by = "species", relationship = "many-to-many") %>% na.omit()
+```
+
+
+```{r}
+to_drop <- union(setdiff(tree@phylo$tip.label, tree_dat$label), setdiff(tree_dat$label, unique(joyData$label))) # remove extra taxa
+tree <- drop.tip(tree, to_drop) 
+
+status_mrca <- list()
+# for (s in unique(tree_dat$status)) {
+#   status_mrca[[s]] <- filter(tree_dat, status == s) %>% pull(label)
+# }
+status_mrca[["endemic"]] <-  filter(tree_dat, status == "endemic") %>% pull(label)
+status_mrca[["other"]] <-  filter(tree_dat, status != "endemic") %>% pull(label)
+
+# note color swap for species -- can't get ggplot to change factor labels
+p <- ggtree(groupOTU(tree, status_mrca, "Species status"), aes(color = `Species status`)) %<+% tree_dat 
+p <- revts(p +  scale_color_manual(values = c(mycolors[1], "#000000"), guide = FALSE) +  theme_tree2()) 
+p <- p + new_scale_color()
+p <- p + geom_tippoint(aes(color=status)) + scale_color_manual(values=mycolors) + theme(legend.position = "none") + xlab("Millions of years ago") + scale_x_continuous(labels = abs)
+
+tip_order <- rev(get_taxa_name(p))
+joyDataDist <- joyData %>% select(label, Disturbance, status) %>%
+    mutate(label = factor(label, levels = tip_order)) %>%
+  arrange(label)
+
+p_dist <- joyDataDist %>% ggplot(aes(x = 5-Disturbance, y = label, fill = status)) + geom_joy(color = "darkgrey")  + scale_fill_manual(values=mycolors) + scale_x_continuous(limits = c(0,4)) + xlab("Disturbance score") +
+theme_bw() + theme(legend.position = "none") + theme(
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title.y = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + ggtitle("Disturbance tolerance")
+
+joyDataElev <- joyData %>% select(label, Elevation, status) %>%
+    mutate(label = factor(label, levels = tip_order)) %>%
+  arrange(label)
+
+p_elev <- joyDataElev %>% ggplot(aes(x = Elevation, y = label, fill = status)) + geom_joy(color = "darkgrey")  + scale_fill_manual(values=mycolors) + scale_x_continuous(limits = c(0,1500)) + xlab("Meters above sea level") +
+theme_bw() + theme(legend.position = "none") + theme(
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title.y = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + ggtitle("Elevational distribution")
+
+
+pop_fst <- read_csv("./data/population_fst_data.csv") %>% filter(sp_beast %in% get_taxa_name(p)) %>% mutate(label = factor(sp_beast, levels = tip_order)) %>%
+  arrange(label)
+
+p_fst <- pop_fst %>% ggplot(aes(x = fst/distance, y = label, fill = category)) + geom_joy(color = "darkgrey") + scale_x_continuous(limits = c(0,.005)) + scale_fill_manual(values=mycolors) + scale_x_continuous(limits = c(0,0.005),  breaks = c(0, 0.0025, 0.005), labels = c("0", "0.0025", "0.005") ) + xlab(expression(F[st]/"kilometer")) +
+theme_bw() + theme(legend.position = "none") + theme(
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title.y = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + ggtitle("Genetic differentiation")
+
+p_marg_dist <- joyDataDist %>%  mutate(status = fct_rev(as.factor(status))) %>% ggplot(aes(y = status, x = 5-Disturbance, fill = status)) + geom_boxplot()  + theme_bw()   + theme(legend.position = "none", 
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + scale_fill_manual(values=rev(mycolors)) + scale_x_continuous(limits = c(0,4)) 
+
+
+p_marg_elev <- joyDataElev  %>%  mutate(status = fct_rev(as.factor(status))) %>% ggplot(aes(y = status, x = Elevation, fill = status)) + geom_boxplot()  + theme_bw()   + theme(legend.position = "none", 
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + scale_fill_manual(values=rev(mycolors)) + scale_x_continuous(limits = c(0,1500)) 
+
+p_marg_fst <- pop_fst  %>%  mutate(status = fct_rev(as.factor(category))) %>% ggplot(aes(y = status, x = fst/distance, fill = status)) + geom_boxplot()  + theme_bw()   + theme(legend.position = "none", 
+  axis.ticks.y = element_blank(), # Remove y-axis ticks
+  panel.grid.major.y = element_blank(), # Remove y-axis grid lines
+  panel.grid.minor.y = element_blank(), # Remove y-axis minor grid lines
+  axis.text.y = element_blank(), # Remove y-axis tick labels
+  axis.title = element_blank(), # Remove y-axis title
+  panel.border = element_blank() # Remove the box around the plot
+) + scale_fill_manual(values=rev(mycolors)) + scale_x_continuous(limits = c(0,0.005),  breaks = c(0, 0.0025, 0.005), labels = c("0", "0.0025", "0.005")) 
+
+
+empty_plot <-  joyDataElev %>% ggplot(aes(x = status, y = Elevation, fill = status)) + geom_bar(stat = "identity", width = 0) +
+   scale_fill_manual(values = mycolors) +
+  theme_void() + theme(legend.position = c(0.5,0.5), # Position the legend in the center
+        legend.title = element_blank()) # Remove the legend title
+
+layout <- plot_layout(
+  ncol = 4,
+  nrow = 2,  
+  heights = c(8, 1),
+  widths = c(2, 1, 1,1)
+)
+
+p  + p_dist + p_elev + p_fst  +
+empty_plot + p_marg_dist + p_marg_elev + p_marg_fst + layout + plot_annotation(tag_levels = list(c('A', 'B','C','D',"",'E',"F","G")))
+
+#ggsave("tree.pdf", width=10, height= 8)
+```
+
