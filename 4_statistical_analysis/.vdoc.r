@@ -1,0 +1,163 @@
+#
+#
+#
+#
+#
+#
+library(tidyverse)
+library(brms)
+library(MCMCglmm)
+library(tidybayes)
+mycolors <- c("chartreuse3", "dodgerblue1", "gold")
+#
+#
+#
+# import species-level ecological data
+grouped <- read_csv("data/species.csv") %>% 
+  select(sp_beast2, status, disturbance_sp = `mean disturbance`, elevation_sp = `mean elev`) %>%
+  mutate(disturbance_sp = 5 - disturbance_sp) 
+
+# import data on population size changes
+dat <- read_csv("data/population.csv") %>% mutate(log_nc_na = log10(nc/na)) %>%
+  left_join(grouped)
+
+dat$status <- factor(dat$status, levels=c("endemic", "widespread Pacific native", 'exotic'))  
+
+# average population size changes to species level
+dat_grouped <- dat %>% group_by(sp_beast2) %>% summarise(log_nc_na = mean(log_nc_na), disturbance_sp = disturbance_sp[1], elevation_sp = elevation_sp[1], status = status[1] )
+
+dat_grouped %>% ggplot(aes(disturbance_sp, log_nc_na, color = status)) + geom_point() + stat_smooth(method = "lm")
+#
+#
+#
+#
+#
+calTree <- function(tree, taxa) { # remove taxa not found in sp_beast2 and calibrate the tree
+    tree <- drop.tip(tree, setdiff(tree$tip.label, taxa))
+    root_node <- c("Proceratium.relictum_EGP0091C09_Fiji", "Hypoponera.eutrepta_EGP0093B09_Fiji", "Hypoponera.monticola_EGP0094C04_Fiji", "Leptogenys.FJE02_EGP0095E10_Fiji", "Leptogenys.letilae_EGP0095D08_Fiji", "Leptogenys.FJE05_EGP0096A07_Fiji", "Leptogenys.fjn02_EGP0095E11_Fiji", "Leptogenys.fjn01_EGP0095F08_Fiji", "Odontomachus.angulatus_EGP0096C03_Fiji", "Odontomachus.simillimus_EGP0098D03_Fiji", "Anochetus.graeffei_EGP0091H05_Fiji", "Pseudoponera.stigma_EGP0099C08_Fiji")
+    tree <- root(tree, outgroup = root_node, resolve.root = TRUE)
+    node <- c(
+      getMRCA(tree, tip = c("Pheidole.roosevelti_EGP0016D06_Fiji","Rogeria.stigmatica_EGP0035C04_Fiji") ), # Myrmicinae: 51-72 MY
+      getMRCA(tree, tip = c("Paraparatrechina.oceanica_EGP0138A07_Fiji","Colobopsis.vitiensis_EGP0060A03_Fiji") ), #Formicinae: 51-71 MY
+      getMRCA(tree, tip = c("Hypoponera.eutrepta_EGP0093B09_Fiji","Pseudoponera.stigma_EGP0099C08_Fiji") ) #  Ponerinae: 61-84 MY
+    )
+    age.min <- c(51,51,61)
+    age.max <- c(72,71,84)
+    soft.bounds <- c(FALSE,FALSE,FALSE)
+    mycalibration <- data.frame(node, age.min, age.max, soft.bounds)
+    tree <- chronos(tree, lambda = 1, model = "relaxed", calibration = mycalibration, control = chronos.control() )
+    return(tree)
+}
+#
+#
+#
+tree_files <- list.files("data/100bootstrap_Fijian_all_specimens", pattern = "Fijian_ants_bootstrap_Tree_\\d{2}\\.tre", full.names = TRUE)
+
+phylo <- calTree(ape::read.tree(tree_files[1]), dat$sp_beast2)
+A <- ape::vcv.phylo(phylo)
+model <- brm(
+  log_nc_na ~ (disturbance_sp + elevation_sp) * status  + (1|gr(sp_beast2, cov = A)) ,
+  data = dat_grouped,
+  data2 = list(A = A),
+  family = gaussian(),
+   prior = c(
+    prior(normal(0,10), "b"),
+    prior(normal(0,50), "Intercept"),
+    prior(student_t(3,0,20), "sd"),
+    prior(student_t(3,0,20), "sigma")
+  ),
+  control = list(adapt_delta = 0.99, max_treedepth = 15),
+  sample_prior = TRUE, chains = 2, cores = 2, 
+  iter = 4000, warmup = 2000
+)
+
+for (file in tree_files[-1]) {
+  phylo <- calTree(ape::read.tree(file), dat$sp_beast2)
+  A <- ape::vcv.phylo(phylo)
+  model <- update(model, newdata = dat_grouped, data2 = list(A = A), recompile = FALSE)
+}
+#
+#
+#
+saveRDS(model, "model.rds")
+#
+#
+#
+model <- readRDS("model.rds")
+```
+#
+#
+#
+#
+summary(model, digits = 3)
+
+model2 <- update(model, . ~ . -elevation_sp - elevation_sp:status)
+summary(model2)
+
+hyp <- "sd_sp_beast2__Intercept^2 / (sd_sp_beast2__Intercept^2 + sigma^2) = 0"
+(hyp <- hypothesis(model2, hyp, class = NULL))
+bayes_R2(model2)
+#
+#
+#
+#
+#
+#
+#
+ce <- conditional_effects(model2, "disturbance_sp:status")
+
+ce2 <- conditional_effects(model2, "status", conditions = list(disturbance_sp = 0)) # compute marginal effects for species in the primary forest
+
+p_main <- 
+plot(ce, plot = FALSE, points = T)[[1]] + scale_fill_manual(values = mycolors) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = status), alpha = 0.01, colour = NA) +
+  labs(x = "Species average disturbance score", y = expression(paste("Population size change (", log[10], frac("present","past"),")"))) +
+  scale_color_manual(values=mycolors) +
+  theme_bw() +
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
+  guides(color = "none") +
+  theme(legend.position = c(.8, .2), legend.title = element_blank(), legend.background = element_rect(colour="grey", size=0.5, linetype="solid") ) +
+  guides(color = guide_legend(override.aes = list(fill = NA))) +
+  ylim(-2, 4) 
+# Plot posterior distributions
+name_map <- c("b_Intercept" = "endemic", 
+              "b_statuswidespreadPacificnative" = "widespread Pacific Native",
+              "b_statusexotic" = "exotic")
+
+              p_marg <- ggplot(ce2[[1]], aes(status, estimate__, color = status))  + geom_point(size=5) + geom_errorbar(aes(ymin=lower__, ymax=upper__), width=0.3, size=1.5) + theme_bw() + theme(legend.position = "none", axis.text = element_blank(), axis.ticks = element_blank()) + scale_color_manual(values = mycolors)  + geom_hline(yintercept = 0, color = "red", linetype = "dashed") + ylim(-2,3.5) + xlab("Species type") + ylab(expression(paste("Population size change (", log[10], frac("present","past"),")")))
+
+ggplot(ce2[[1]], aes(x = status, y = log_nc_na)) +
+  geom_point() +  # Use geom_line() if you prefer lines
+  labs(x = "Status", y = "Log(NC/NA)") +
+  theme_minimal()
+
+p_marg_boxplot <- dat_grouped %>% 
+  ggplot(aes(x = status, y = disturbance_sp, fill=status)) + ylim(0,3) +
+  geom_violin()  +
+  coord_flip() +
+  theme_bw()   + scale_fill_manual(values = mycolors) +
+  theme(legend.position = "none", axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())+ ylab("Species average disturbance score") + xlab("Species type")
+
+layout <- plot_layout(
+  ncol = 2, 
+  nrow = 2, 
+  heights = c(1, 4), 
+  widths = c(4, 1),
+)
+
+p_elevation <- dat %>% ggplot(aes(disturbance_sp, elevation_sp, color = status)) + geom_point() +theme_bw() + scale_color_manual(values=mycolors) + theme(legend.position = "none") + xlab("Disturbance score") + ylab("Elevation (m)")
+
+empty_plot <- ggplot() + 
+  geom_blank() +
+  theme_void()
+
+p_marg_boxplot + p_elevation + p_main + p_marg + layout +  plot_annotation(tag_levels = 'A')
+
+# ggsave("bayesian regression.pdf", height=7, width=11)
+#
+#
+#
+#
+#
+#
